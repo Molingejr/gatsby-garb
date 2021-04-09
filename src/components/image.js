@@ -23,6 +23,16 @@ const Image = () => {
           }
         }
       }
+
+      iconImage: file(relativePath: {
+        eq: "gatsby-icon.png"
+      }){
+        childImageSharp {
+          fluid(maxWidth: 590){
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
     }
   `)
 
@@ -30,7 +40,11 @@ const Image = () => {
     return <div>Picture not found</div>
   }
 
-  return <Img fluid={data.placeholderImage.childImageSharp.fluid} />
+  return (<>
+    <Img fluid={data.placeholderImage.childImageSharp.fluid} />
+    <Img fluid={data.iconImage.childImageSharp.fluid} />
+    </>
+    )
 }
 
 export default Image
